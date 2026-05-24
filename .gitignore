@@ -14,14 +14,16 @@ gmon.out
 a.out
 
 # Directorios de ejecución
-cpu_*/
-run_*/
-gpu_*/
+runs/cpu_*/*.txt
+runs/gpu_*/*.txt
 
 # Archivos de depuración
 *.dSYM/
 *.su
 
+!cpu_*/*.csv
+!run_*/*.csv
+!gpu_*/*.csv
 # Archivos de editor
 .vscode/
 .idea/
