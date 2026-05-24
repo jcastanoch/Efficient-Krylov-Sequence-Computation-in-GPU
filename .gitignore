@@ -32,6 +32,7 @@ runs/gpu_*/*.txt
 *~
 .claude
 CLAUDE.md
+.venv
 
 # Archivos del sistema
 .DS_Store
