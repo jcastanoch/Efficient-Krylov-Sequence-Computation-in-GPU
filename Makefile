@@ -1,3 +1,7 @@
+ifeq ($(OS),Windows_NT)
+    SHELL := C:/Program Files/Git/usr/bin/sh.exe
+endif
+
 CC     = gcc
 NVCC   = nvcc
 CFLAGS = -O0 -Wall -I include
