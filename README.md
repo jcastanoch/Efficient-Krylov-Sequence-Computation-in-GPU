@@ -159,6 +159,31 @@ La salida agrupa los resultados por exponente, mostrando primero CPU y luego cad
 ...
 ```
 
+### Ejecutar benchmark solo GPU
+
+Igual que `benchmark`, pero **omite la fase CPU**. Útil cuando solo interesa comparar kernels GPU o cuando la corrida CPU es muy lenta para los exponentes elegidos. Para cada exponente del rango, corre NAIVE → COALESCED → TILED → CUBLAS y pasa al siguiente.
+
+```bash
+# Rango personalizado (obligatorio)
+make benchmark_gpu EXPS="10 11 12 13 14"
+```
+
+Salida:
+
+```
+============================================
+  Exponente: 10  (N = 2^10)  [solo GPU]
+============================================
+--- GPU NAIVE ---
+...
+--- GPU COALESCED ---
+...
+--- GPU TILED ---
+...
+--- GPU CUBLAS ---
+...
+```
+
 ### Limpiar
 
 ```bash

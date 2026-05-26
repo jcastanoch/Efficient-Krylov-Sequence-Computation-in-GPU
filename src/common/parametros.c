@@ -80,7 +80,7 @@ int crear_outdir(int input, char *outdir, size_t size) {
     strftime(ts, sizeof(ts), "%m%d_%H%M%S", tm_info);
 
     #if defined(USE_CUDA)
-        #if defined(SEL__TILED)
+        #if defined(SEL_TILED)
             snprintf(outdir, size, "runs/gpu_tiled_%d_%s", input, ts);
         #elif defined(SEL_COALESCED)
             snprintf(outdir, size, "runs/gpu_coalesced_%d_%s", input, ts);
