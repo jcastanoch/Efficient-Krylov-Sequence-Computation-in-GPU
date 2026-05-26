@@ -153,7 +153,25 @@ void metricas_guardar(const Metricas *met, const char *outdir, double benchmark_
         printf("  Info: %s\n", ruta);
     }
 
-    snprintf(ruta, sizeof(ruta), "%s/benchmark.csv", outdir);
+    int exp_input = 0;
+    {
+        int x = met->m;
+        while (x > 1) { x >>= 1; exp_input++; }
+    }
+    #if defined(USE_CUDA)
+        #if defined(SEL_TILED)
+            const char *modo_sufijo = "gpu_tiled";
+        #elif defined(SEL_COALESCED)
+            const char *modo_sufijo = "gpu_coalesced";
+        #elif defined(SEL_CUBLAS)
+            const char *modo_sufijo = "gpu_cublas";
+        #else
+            const char *modo_sufijo = "gpu_naive";
+        #endif
+    #else
+        const char *modo_sufijo = "cpu";
+    #endif
+    snprintf(ruta, sizeof(ruta), "%s/%d_%s.csv", outdir, exp_input, modo_sufijo);
     FILE *fc = fopen(ruta, "w");
     if (!fc) { fprintf(stderr, "Error: no se pudo crear %s\n", ruta); return; }
 
